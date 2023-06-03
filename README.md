@@ -16,4 +16,4 @@ I build an app with a direct and powerful purpose. It does all of the things tha
 
 ### Lighthouse Accessibility Report Score
 
-![Lighthouse Report](LH-SCORE.png)
+![Lighthouse Report](images/LH-SCORE.png)
