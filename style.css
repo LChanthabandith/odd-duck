@@ -29,6 +29,10 @@ body {
   #results-container {
     margin-top: 50px;
   }
+
+  img {
+    height: 100px; /* Adding height property to img elements as suggest by Thomas */
+}
   
   @media (max-width: 600px) {
     .product {

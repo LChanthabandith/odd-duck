@@ -26,7 +26,7 @@ var products = [
   new Product("tauntaun", "images/tauntaun.jpg"),
   new Product("unicorn", "images/unicorn.jpg"),
   new Product("water-can", "images/water-can.jpg"),
-  new Product("wine-glass", "images/wine-glass.jpg")
+  new Product("wine-glass", "images/wine-glass.jpg"),
 ];
 
 var rounds = 25; // Number of voting rounds
@@ -42,14 +42,14 @@ function displayProducts() {
 
   var uniqueIndices = [];
   while (uniqueIndices.length < 3) {
-    var randomIndex = Math.floor(Math.random() * productsConsidered.length);
+    var randomIndex = Math.floor(Math.random() * products.length);
     if (!uniqueIndices.includes(randomIndex)) {
       uniqueIndices.push(randomIndex);
 
       var product = productsConsidered[randomIndex];
       var productElement = document.createElement("div");
       productElement.className = "product";
-      productElement.id = "product-" + (uniqueIndices.length);
+      productElement.id = "product-" + randomIndex;
 
       var img = document.createElement("img");
       img.src = product.imagePath;
@@ -59,6 +59,10 @@ function displayProducts() {
       productContainer.appendChild(productElement);
 
       product.timesShown++; // Increment the timesShown property
+
+      console.log(
+        product.name + " shown. Total times shown: " + product.timesShown
+      );
     }
   }
 
@@ -72,10 +76,18 @@ function productClick(event) {
   var productElements = productContainer.getElementsByClassName("product");
 
   for (var i = 0; i < productElements.length; i++) {
-    if (clickedProduct === productElements[i] || clickedProduct === productElements[i].getElementsByTagName("img")[0]) {
-      var productIndex = parseInt(productElements[i].id.split("-")[1]) - 1;
-      selectedProduct = productsConsidered[productIndex];
+    if (
+      clickedProduct.parentNode === productElements[i] ||
+      clickedProduct === productElements[i].getElementsByTagName("img")[0]
+    ) {
+      var productIndex = parseInt(productElements[i].id.split("-")[1]);
+      selectedProduct = products[productIndex];
       selectedProduct.timesClicked++;
+      console.log(
+        selectedProduct.name +
+          " clicked. Total times clicked: " +
+          selectedProduct.timesClicked
+      );
       break;
     }
   }
@@ -95,12 +107,57 @@ function showResults() {
   var resultsContainer = document.getElementById("results-container");
   resultsContainer.innerHTML = "";
 
+  var productNames = [];
+  var voteCounts = [];
+  var showCounts = [];
+
   for (var i = 0; i < products.length; i++) {
     var product = products[i];
-    var result = document.createElement("p");
-    result.textContent = `${product.name}: ${product.timesClicked} votes, seen ${product.timesShown} times`;
-    resultsContainer.appendChild(result);
+    productNames.push(product.name);
+    voteCounts.push(product.timesClicked);
+    showCounts.push(product.timesShown);
   }
+
+  // Log the product names, vote counts, and show counts to the console
+  console.log("Product names: ", productNames);
+  console.log("Vote counts: ", voteCounts);
+  console.log("Show counts: ", showCounts);
+
+  // Create a new chart
+  var ctx = document.getElementById("results-chart").getContext("2d");
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: productNames,
+      datasets: [
+        {
+          label: "Votes",
+          data: voteCounts,
+          backgroundColor: "rgba(75, 192, 192, 0.6)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 1,
+        },
+        {
+          label: "Shown",
+          data: showCounts,
+          backgroundColor: "rgba(153, 102, 255, 0.6)",
+          borderColor: "rgba(153, 102, 255, 1)",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          beginAtZero: true,
+        },
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 }
 
 // Event listener for the "View Results" button
@@ -109,4 +166,3 @@ viewResultsBtn.addEventListener("click", showResults);
 
 // Initialize the app
 displayProducts();
-

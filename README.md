@@ -8,11 +8,13 @@ I build an app with a direct and powerful purpose. It does all of the things tha
 
 ### Links and Resources
 
-* [HTML](https://www.w3schools.com/html/default.asp)
+- [HTML](https://www.w3schools.com/html/default.asp)
 
-* [CSS](https://www.w3schools.com/css/default.asp)
+- [CSS](https://www.w3schools.com/css/default.asp)
 
-* [JavaScript](https://www.w3schools.com/js/default.asp)
+- [JavaScript](https://www.w3schools.com/js/default.asp)
+
+- [Chart.js](https://www.chartjs.org/docs/latest/getting-started/usage.html)
 
 ### Lighthouse Accessibility Report Score
 
