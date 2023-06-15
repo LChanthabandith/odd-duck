@@ -1,42 +1,71 @@
+/* Set global styles for the body element */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    text-align: center;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  #product-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 50px;
-  }
-  
-  .product {
-    width: 200px;
-    margin-bottom: 20px;
-  }
-  
-  #view-results {
-    margin-top: 30px;
-    padding: 10px 20px;
-    font-size: 18px;
-  }
-  
-  #results-container {
-    margin-top: 50px;
-  }
-
-  img {
-    height: 100px; /* Adding height property to img elements as suggest by Thomas */
+  font-family: 'Helvetica Neue', sans-serif; /* Apply a modern sans-serif font */
+  margin: 0; /* Remove the default browser margin */
+  padding: 20px; /* Add a bit of padding around all the content */
+  background-color: #f4f4f4; /* Set a light grey background color */
+  color: #333; /* Set default text color to a dark grey */
+  text-align: center; /* Center all text by default */
 }
-  
-  @media (max-width: 600px) {
-    .product {
-      width: 100%;
-    }
+
+/* Style the main heading */
+h1 {
+  color: #446600; /* Change the text color to a dark green */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Apply a subtle text shadow for depth */
+}
+
+/* Set styles for the product container */
+#product-container {
+  display: flex; /* Apply flexbox for layout */
+  flex-wrap: wrap; /* Allow flex items to wrap to a new line */
+  justify-content: space-around; /* Distribute items evenly */
+  margin: 50px auto; /* Add margin to the top and bottom, auto for left and right for centering */
+  max-width: 800px; /* Set a maximum width to prevent stretching on wide screens */
+}
+
+/* Set styles for individual products */
+.product {
+  width: calc(33% - 30px); /* Set the width of each product to be approximately a third of the container, minus some margin */
+  margin: 15px; /* Add some margin around each product */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for a "card" effect */
+  padding: 20px; /* Add some internal spacing */
+  background-color: white; /* Set the background color to white */
+  border-radius: 10px; /* Round the corners slightly */
+}
+
+/* Set styles for product images */
+.product img {
+  width: 100%; /* Make the image take up the full width of its container */
+  object-fit: cover; /* Ensure the images keep their aspect ratio */
+  border-radius: 10px; /* Round the corners of the images */
+}
+
+/* Set styles for the view results button */
+#view-results-btn {
+  margin: 30px auto; /* Position the button */
+  padding: 10px 20px; /* Add some padding */
+  font-size: 18px; /* Increase the font size */
+  background-color: #446600; /* Set the background color to match the heading */
+  color: white; /* Set the text color to white */
+  border: none; /* Remove the default border */
+  border-radius: 5px; /* Round the corners slightly */
+  cursor: pointer; /* Change the cursor when hovering over the button */
+  transition: background-color 0.3s; /* Add a transition for the hover effect */
+}
+
+/* Change the button color when hovered over */
+#view-results-btn:hover {
+  background-color: #558800; /* Make the button a brighter green */
+}
+
+/* Set styles for the results container */
+#results-container {
+  margin-top: 50px; /* Add some space above the results container */
+}
+
+/* Change layout for smaller screens */
+@media (max-width: 600px) {
+  .product {
+      width: 100%; /* Make products take up the full width of the screen */
   }
-  
+}
